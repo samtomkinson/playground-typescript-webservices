@@ -1,36 +1,21 @@
-import * as http from 'http';
-import * as mocha from 'mocha';
-import * as chai from 'chai';
-import chaiHttp = require('chai-http');
-import chaiAsPromised = require("chai-as-promised");
-
 import app from '../src/App';
 
-chai.use(chaiHttp);
-chai.use(chaiAsPromised);
-
-const expect = chai.expect;
+import * as supertest from 'supertest'
 
 describe('baseRoute', () => {
-    const server = http.createServer(app);
-    const request = chai.request(server);
+    const request = supertest(app);
 
     it('should be json', () => {
         return request.get('/')
         .then(res => {
-            expect(res.type).to.eql('application/json');
+            expect(res.type).toBe('application/json');
         });
     });
 
     it('should have a message prop', () => {
         return request.get('/')
             .then(res => {
-                expect(res.body.message).to.eql('Hello World!');
+                expect(res.body.message).toBe('Hello World!');
             });
     });
-
-    after(done => {
-        server.close(done);
-    });
-
 });
