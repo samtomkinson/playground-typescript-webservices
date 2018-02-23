@@ -1,4 +1,4 @@
-import app from '../../src/App';
+import app from '../../src/app';
 
 import * as supertest from 'supertest'
 
