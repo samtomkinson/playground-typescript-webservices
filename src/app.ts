@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as express from 'express';
 import * as logger from 'morgan';
 import * as bodyParser from 'body-parser';
+import * as cors from 'cors';
 
 import HeroRouter from './routes/HeroRouter';
 
@@ -23,6 +24,10 @@ class App {
     this.express.use(logger('dev'));
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({ extended: false }));
+    var corsOptions = {
+      origin: 'http://localhost:4200'
+    }
+    this.express.use(cors(corsOptions));
   }
 
   // Configure API endpoints.
