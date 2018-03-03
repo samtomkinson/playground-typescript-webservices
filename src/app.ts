@@ -12,7 +12,7 @@ class App {
   // ref to Express instance
   public express: express.Application;
 
-  //Run configuration methods on the Express instance.
+  // Run configuration methods on the Express instance.
   constructor() {
     this.express = express();
     this.middleware();
@@ -24,9 +24,9 @@ class App {
     this.express.use(logger('dev'));
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({ extended: false }));
-    var corsOptions = {
+    const corsOptions = {
       origin: 'http://localhost:4200'
-    }
+    };
     this.express.use(cors(corsOptions));
   }
 
@@ -46,6 +46,9 @@ class App {
     this.express.use('/api/v1/heroes', HeroRouter);
   }
 
+  private getCorsOptions(): any {
+
+  }
 }
 
 export default new App().express;
